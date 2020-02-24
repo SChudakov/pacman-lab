@@ -2,84 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="96777563-0a2f-42b2-a5ee-329f5f3e639b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.4.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/Collider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/Component.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/GameObject.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/ObjectManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/Physics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/components/State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/AbstractGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/GameContainer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/Input.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/Renderer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/Window.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/fx/AnimatedImage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/fx/Pixel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/fx/SoundClip.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/core/fx/SpriteAnimation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/pacman/GameImage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/pacman/GameManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/pacman/PacMan.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/pacman/PacManGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/br/ufrpe/pixengine/pacman/Wall.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/fonts/standard.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fonts/standard.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/blue_point.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/blue_point.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/floor.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/floor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/ghost.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/pacman_sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/pacman_sprites.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/purple_point.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/purple_point.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/images/wall.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/wall.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/fonts/standard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/blue_point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ending_screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/ending_screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/first_screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/first_screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/floor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/game_over_screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/game_over_screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/ghost.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/pacman_sprites.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/purple_point.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/wall.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Collider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/ObjectManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/Physics.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/components/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/AbstractGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/GameContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/GameContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/Input.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/Renderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/Window.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/AnimatedImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/AnimatedImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/Pixel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/SoundClip.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/SpriteAnimation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/ghost_has_been_eaten.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/ghost_strong.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/pacman_chomp_blue_point.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/pacman_chomp_purple_point.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/pacman_die.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/pacman_gameover.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/core/fx/pacman_introduction.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/BluePoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/FirstState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/GameImage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/GameManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/GameOverState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/Ghost.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/HomeState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/PacMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/PacMan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/PacManGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/PurplePoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/SecondState.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Wall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/br/ufrpe/pixengine/pacman/WinState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameContainer$TimeTracker.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameContainer$TimeTracker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameContainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/GraphicsConfiguration.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/PacManGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/game/PacManGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/game/State.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/game/State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/AnimatedImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/AnimatedImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/Pixel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/Pixel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/graphics/Renderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Collider.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Collider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Component.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Component.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/GameImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/GameImage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/ObjectManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/ObjectManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/PacMan.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/PacMan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/object/Wall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/pacman/state/MazeState.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/pacman/state/MazeState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/game/GameContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/GameContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/game/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/game/GraphicsConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/GameConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/game/PacManGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/PacManGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/game/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/game/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/graphics/AnimatedImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/AnimatedImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/graphics/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/Pixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/graphics/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/graphics/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/Collider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Collider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/GameImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/GameImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/ObjectManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/ObjectManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/PacMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/PacMan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/object/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/object/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pacman/state/MazeState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pacman/state/MazeState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,12 +61,27 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="PixEngine" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="JUnit4 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -135,6 +114,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.javacompiler" />
@@ -144,8 +126,15 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="pacman.algo" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src" />
@@ -219,9 +208,10 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="pacman.game.PacManGame" />
       <module name="Pacman.main" />
+      <option name="VM_PARAMETERS" value="-ea" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="pacman.object.*" />
+          <option name="PATTERN" value="pacman.algo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -254,6 +244,66 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="BfsShortestPathTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;pacman.algo.BfsShortestPathTest&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BfsShortestPathTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;pacman.algo.BfsShortestPathTest.test&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="BfsShortestPathTest.test3" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;pacman.algo.BfsShortestPathTest.test3&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":cleanTest" />
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
     </configuration>
     <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
       <setting name="vmparams" value="" />
@@ -294,9 +344,15 @@
     <list>
       <item itemvalue="Application.PacManGame" />
       <item itemvalue="Application.SnakeGame" />
+      <item itemvalue="Gradle.BfsShortestPathTest.test" />
+      <item itemvalue="Gradle.BfsShortestPathTest" />
+      <item itemvalue="Gradle.BfsShortestPathTest.test3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.BfsShortestPathTest.test3" />
+        <item itemvalue="Gradle.BfsShortestPathTest" />
+        <item itemvalue="Gradle.BfsShortestPathTest.test" />
         <item itemvalue="Application.PacManGame" />
         <item itemvalue="Application.SnakeGame" />
       </list>
@@ -317,7 +373,7 @@
       <workItem from="1465172576543" duration="836000" />
       <workItem from="1465241322555" duration="3879000" />
       <workItem from="1582380000060" duration="520000" />
-      <workItem from="1582380526642" duration="23580000" />
+      <workItem from="1582380526642" duration="45598000" />
     </task>
     <servers />
   </component>
@@ -333,26 +389,26 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="418" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582380970704">
+    <state x="418" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582570630971">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="418" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582380970704" />
+    <state x="418" y="163" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582570630971" />
     <state x="532" y="320" width="846" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582380071863">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="532" y="320" width="846" height="410" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1582380071863" />
-    <state x="757" y="208" width="395" height="634" key="#com.intellij.ide.util.MemberChooser" timestamp="1582464760551">
+    <state x="757" y="208" width="395" height="634" key="#com.intellij.ide.util.MemberChooser" timestamp="1582572596904">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="757" y="208" width="395" height="634" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1582464760551" />
+    <state x="757" y="208" width="395" height="634" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1582572596904" />
     <state x="782" y="417" width="345" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1582380191919">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="782" y="417" width="345" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582380191919" />
-    <state x="648" y="398" width="623" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582465228317">
+    <state x="648" y="398" width="623" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582557901279">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="648" y="398" width="623" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1582465228317" />
+    <state x="648" y="398" width="623" height="265" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1582557901279" />
     <state x="515" y="27" width="880" height="1053" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582464598627">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -361,50 +417,62 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="693" y="271" width="524" height="508" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582465461636" />
-    <state width="1864" height="386" key="GridCell.Tab.0.bottom" timestamp="1582472146209">
+    <state width="1864" height="165" key="GridCell.Tab.0.bottom" timestamp="1582573650960">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="386" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582472146209" />
-    <state width="1864" height="386" key="GridCell.Tab.0.center" timestamp="1582472146208">
+    <state width="1864" height="165" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582573650960" />
+    <state width="1864" height="165" key="GridCell.Tab.0.center" timestamp="1582573650959">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="386" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582472146208" />
-    <state width="1864" height="386" key="GridCell.Tab.0.left" timestamp="1582472146207">
+    <state width="1864" height="165" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582573650959" />
+    <state width="1864" height="165" key="GridCell.Tab.0.left" timestamp="1582573650958">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="386" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582472146207" />
-    <state width="1864" height="386" key="GridCell.Tab.0.right" timestamp="1582472146208">
+    <state width="1864" height="165" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582573650958" />
+    <state width="1864" height="165" key="GridCell.Tab.0.right" timestamp="1582573650959">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="386" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582472146208" />
-    <state width="1864" height="339" key="GridCell.Tab.1.bottom" timestamp="1582468203679">
+    <state width="1864" height="165" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582573650959" />
+    <state width="1864" height="77" key="GridCell.Tab.1.bottom" timestamp="1582573550379">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="339" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582468203679" />
-    <state width="1864" height="339" key="GridCell.Tab.1.center" timestamp="1582468203678">
+    <state width="1864" height="77" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582573550379" />
+    <state width="1864" height="77" key="GridCell.Tab.1.center" timestamp="1582573550377">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="339" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582468203678" />
-    <state width="1864" height="339" key="GridCell.Tab.1.left" timestamp="1582468203677">
+    <state width="1864" height="77" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582573550377" />
+    <state width="1864" height="77" key="GridCell.Tab.1.left" timestamp="1582573550376">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="339" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582468203677" />
-    <state width="1864" height="339" key="GridCell.Tab.1.right" timestamp="1582468203678">
+    <state width="1864" height="77" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582573550376" />
+    <state width="1864" height="77" key="GridCell.Tab.1.right" timestamp="1582573550378">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1864" height="339" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582468203678" />
-    <state x="443" y="102" width="1024" height="845" key="SettingsEditor" timestamp="1582380952227">
+    <state width="1864" height="77" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582573550378" />
+    <state x="443" y="102" width="1024" height="845" key="SettingsEditor" timestamp="1582570624867">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="443" y="102" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1582380952227" />
-    <state x="100" y="70" width="1720" height="910" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1582445085528">
+    <state x="443" y="102" width="1024" height="845" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1582570624867" />
+    <state x="100" y="70" width="1720" height="910" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1582478520807">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="100" y="70" width="1720" height="910" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582445085528" />
+    <state x="100" y="70" width="1720" height="910" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582478520807" />
+    <state x="681" y="146" width="548" height="758" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1582560606144">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="681" y="146" width="548" height="758" key="com.intellij.testIntegration.createTest.CreateTestDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582560606144" />
+    <state x="67" y="58" width="1843" height="934" key="new project wizard" timestamp="1582560624051">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="67" y="58" width="1843" height="934" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1582560624051" />
     <state x="624" y="238" key="run.anything.popup" timestamp="1582380799286">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="624" y="238" key="run.anything.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1582380799286" />
+    <state x="592" y="216" width="734" height="678" key="search.everywhere.popup" timestamp="1582551796016">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="592" y="216" width="734" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1582551796016" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -415,9 +483,19 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pacman/algo/BfsShortestPath.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/pacman/object/PacMan.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="4" />
+          <line>91</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/pacman/object/ObjectManager.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -7,16 +7,20 @@ public class GameContainer implements Runnable {
     private Thread thread;
     private GameManager gManager;
     private Renderer renderer;
-    private GraphicsConfiguration configuration;
+    private GameConfiguration configuration;
 
     private boolean isRunning = false;
 
-    public GameContainer(GraphicsConfiguration conf, Stage mainStage) {
-    	this.configuration = conf;
+    public GameContainer(GameConfiguration conf, Stage mainStage) {
+        this.configuration = conf;
 
-		this.gManager = new GameManager(conf);
-		this.renderer = new Renderer(conf, mainStage);
-		this.thread = new Thread(this);
+        this.gManager = new GameManager(conf);
+        this.renderer = new Renderer(conf, mainStage);
+        this.thread = new Thread(this);
+    }
+
+    public GameConfiguration getConfiguration() {
+        return configuration;
     }
 
     public void start() {
@@ -60,9 +64,9 @@ public class GameContainer implements Runnable {
             return false;
         }
 
-        double getTimePassed(){
-        	return timePassed;
-		}
+        double getTimePassed() {
+            return timePassed;
+        }
     }
 
     public void run() {
@@ -72,16 +76,16 @@ public class GameContainer implements Runnable {
 
         while (isRunning) {
             if (tracker.newFrame()) {
-                gManager.update(this, (float) tracker.getTimePassed());
-				if (configuration.isClearScreen())
-					renderer.clear();
+                gManager.update(this, (double) tracker.getTimePassed());
+                renderer.clear();
 
-				gManager.render(this, renderer);
+                gManager.render(this, renderer);
             }
         }
 
         cleanUp();
     }
+
 
     private void cleanUp() {
         renderer.cleanUp();

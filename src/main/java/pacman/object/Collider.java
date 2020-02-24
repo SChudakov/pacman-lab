@@ -1,28 +1,29 @@
 package pacman.object;
 
 public class Collider {
-	private final float width, height;
+	private final double width, height;
 	private GameObject obj;
 
 	public Collider(GameObject obj) {
-		this.width = obj.getWidth()/2;
-		this.height = obj.getHeight()/2;
+		this.width = obj.getWidth()/3;
+		this.height = obj.getHeight()/3;
+		System.out.printf("Width = %f, height = %f\n", width, height);
 		this.obj = obj;
 	}
 
-	public float getCenterX() {
+	public double getCenterX() {
 		return obj.getX() + width;
 	}
 
-	public float getCenterY() {
+	public double getCenterY() {
 		return obj.getY() + height;
 	}
 
-	public float getWidth() {
+	public double getWidth() {
 		return width;
 	}
 
-	public float getHeight() {
+	public double getHeight() {
 		return height;
 	}
 }

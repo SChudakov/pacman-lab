@@ -1,7 +1,7 @@
 package pacman.object;
 
 import pacman.game.GameContainer;
-import pacman.game.GraphicsConfiguration;
+import pacman.game.GameConfiguration;
 import pacman.graphics.Renderer;
 import javafx.scene.image.Image;
 
@@ -9,7 +9,7 @@ public class GameImage extends GameObject{
 	private Image background_image;
 	
 	
-	public GameImage(String background_path, GraphicsConfiguration conf) {
+	public GameImage(String background_path, GameConfiguration conf) {
 		super(0, 0, conf.getWindowWidth(), conf.getWindowHeight(), "background");
 		this.background_image = new Image(background_path);
 	}

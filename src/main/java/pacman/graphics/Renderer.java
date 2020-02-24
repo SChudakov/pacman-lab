@@ -4,12 +4,10 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
-import pacman.game.GameContainer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import pacman.game.GraphicsConfiguration;
+import pacman.game.GameConfiguration;
 
 public class Renderer {
 	private Stage mainStage;
@@ -18,7 +16,7 @@ public class Renderer {
 	private GraphicsContext graphics;
 	private int width, height;
 
-	public Renderer(GraphicsConfiguration conf, Stage primaryStage) {
+	public Renderer(GameConfiguration conf, Stage primaryStage) {
 		mainStage = primaryStage;
 		mainStage.setTitle("Pacman");
 

@@ -5,7 +5,7 @@ import pacman.graphics.Renderer;
 
 public interface Component {
 
-	void update(GameContainer gc, float dt);
+	void update(GameContainer gc, double dt);
 
 	void render(GameContainer gc, Renderer r);
 

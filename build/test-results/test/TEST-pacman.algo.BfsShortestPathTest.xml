@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="pacman.algo.BfsShortestPathTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-24T18:30:51" hostname="timofey-XPS-15-9560" time="0.005">
+  <properties/>
+  <testcase name="test3" classname="pacman.algo.BfsShortestPathTest" time="0.005"/>
+  <system-out><![CDATA[Width = 48.000000, height = 33.000000
+Width = 48.000000, height = 33.000000
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

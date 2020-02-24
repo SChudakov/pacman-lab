@@ -36,7 +36,7 @@ public class Pixel {
 				| (int) (b * 255f + 0.5f));
 	}
 
-	public static int getColorPower(int color, float power) {
+	public static int getColorPower(int color, double power) {
 		return getColor(1, getRed(color) * power, getGreen(color) * power, getBlue(color) * power);
 	}
 

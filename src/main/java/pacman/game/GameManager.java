@@ -7,7 +7,7 @@ public class GameManager {
 
 	private State state;
 
-	public GameManager(GraphicsConfiguration conf) {
+	public GameManager(GameConfiguration conf) {
 		state = new MazeState(conf);
 	}
 
@@ -15,7 +15,7 @@ public class GameManager {
 		this.state = state;
 	}
 
-	public void update(GameContainer gc, float dt) {
+	public void update(GameContainer gc, double dt) {
 		state.update(gc, dt);
 	}
 

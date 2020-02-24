@@ -1,14 +1,14 @@
 package pacman.object;
 
 import pacman.game.GameContainer;
-import pacman.game.GraphicsConfiguration;
+import pacman.game.GameConfiguration;
 import pacman.graphics.Renderer;
 import javafx.scene.image.Image;
 
 public class Wall extends GameObject{
 	private Image point;
 
-	public Wall(int column, int row, GraphicsConfiguration conf, String tag) {
+	public Wall(int row, int column, GameConfiguration conf, String tag) {
 		super(conf.getTileX(column), conf.getTileY(row), conf.getTileWidth(), conf.getTileHeight(),tag);
 		setTag(tag);
 

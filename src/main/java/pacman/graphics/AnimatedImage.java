@@ -24,7 +24,7 @@ public class AnimatedImage {
             int count,   int columns,
             int offsetX, int offsetY,
             int frameWidth,   int frameHeight) {
-        this.image = new Image(imageName);        
+        this.image = new Image(imageName);
         this.totalDuration = totalDurationInMilis;
         this.count     = count;
         this.columns   = columns;
@@ -38,8 +38,7 @@ public class AnimatedImage {
     public Rectangle2D getCurrentFramePosition() {
         int x = (this.currentIndex % columns) * frameWidth  + offsetX;
         int y = (this.currentIndex / columns) * frameHeight + offsetY;
-        Rectangle2D position = new Rectangle2D(x, y, frameWidth, frameHeight);
-        return position;
+        return new Rectangle2D(x, y, frameWidth, frameHeight);
     }
     
     public void nextFrame(double deltaTime) {

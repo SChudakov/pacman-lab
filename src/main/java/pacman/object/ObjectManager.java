@@ -7,6 +7,7 @@ import pacman.game.GameContainer;
 import pacman.graphics.Renderer;
 
 public class ObjectManager {
+	private static final double EPS = 1e-6;
 	private List<GameObject> objects;
 
 	public ObjectManager(){
@@ -17,11 +18,12 @@ public class ObjectManager {
 		objects.add(object);
 	}
 
-	public void updateObjects(GameContainer gc, float dt) {
-		update();
+	public void updateObjects(GameContainer gc, double dt) {
 		for (GameObject object : objects) {
 			object.update(gc, dt);
 		}
+		update();
+		objects.removeIf(GameObject::isDead);
 	}
 
 	public void renderObjects(GameContainer gc, Renderer r) {
@@ -36,8 +38,8 @@ public class ObjectManager {
 				Collider c0 = objects.get(i).getCollider();
 				Collider c1 = objects.get(j).getCollider();
 
-				if (Math.abs(c0.getCenterX() - c1.getCenterX()) < c0.getWidth() + c1.getWidth()) {
-					if (Math.abs(c0.getCenterY() - c1.getCenterY()) < c0.getHeight() + c1.getHeight()) {
+				if (Math.abs(c0.getCenterX() - c1.getCenterX()) < c0.getWidth() + c1.getWidth() - EPS) {
+					if (Math.abs(c0.getCenterY() - c1.getCenterY()) < c0.getHeight() + c1.getHeight() - EPS) {
 						objects.get(i).collideWith(objects.get(j));
 						objects.get(j).collideWith(objects.get(i));
 					}
