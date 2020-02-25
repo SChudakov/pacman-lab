@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 public class GameImage extends GameObject{
 	private Image background_image;
 	
-	
 	public GameImage(String background_path, GameConfiguration conf) {
 		super(0, 0, conf.getWindowWidth(), conf.getWindowHeight(), "background");
 		this.background_image = new Image(background_path);

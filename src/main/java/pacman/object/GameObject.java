@@ -4,7 +4,8 @@ import pacman.game.GameContainer;
 import pacman.graphics.Renderer;
 
 public abstract class GameObject implements Component {
-    protected double x, y;
+    protected double x;
+    protected double y;
     protected double width, height;
     protected boolean dead;
     protected String tag;

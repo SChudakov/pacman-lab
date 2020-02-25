@@ -1,6 +1,6 @@
 package pacman.game;
 
-import pacman.algo.Position;
+import pacman.algorithm.Position;
 import pacman.object.GameObject;
 
 public class GameConfiguration {
@@ -15,46 +15,6 @@ public class GameConfiguration {
             {0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0},
             {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
-
-    public static class GameConfigurationBuilder {
-        private int windowWidth;
-        private int windowHeight;
-        private int[][] maze;
-        private boolean drawCollider;
-
-        public GameConfiguration build() {
-            if (windowWidth <= 0) {
-                windowWidth = 720;
-            }
-            if (windowHeight <= 0) {
-                windowHeight = 396;
-            }
-            if (maze == null) {
-                maze = DEFAULT_MAZE;
-            }
-            return new GameConfiguration(windowWidth, windowHeight, maze, drawCollider);
-        }
-
-        public GameConfigurationBuilder setWindowWidth(int windowWidth) {
-            this.windowWidth = windowWidth;
-            return this;
-        }
-
-        public GameConfigurationBuilder setWindowHeight(int windowHeight) {
-            this.windowHeight = windowHeight;
-            return this;
-        }
-
-        public GameConfigurationBuilder setMaze(int[][] maze) {
-            this.maze = maze;
-            return this;
-        }
-
-        public GameConfigurationBuilder setDrawCollider(boolean drawCollider) {
-            this.drawCollider = drawCollider;
-            return this;
-        }
-    }
 
 
     private int windowWidth;
@@ -131,5 +91,45 @@ public class GameConfiguration {
 
     public double getTileY(int rowNum) {
         return getTileHeight() * rowNum;
+    }
+
+    public static class GameConfigurationBuilder {
+        private int windowWidth;
+        private int windowHeight;
+        private int[][] maze;
+        private boolean drawCollider;
+
+        public GameConfiguration build() {
+            if (windowWidth <= 0) {
+                windowWidth = 720;
+            }
+            if (windowHeight <= 0) {
+                windowHeight = 396;
+            }
+            if (maze == null) {
+                maze = DEFAULT_MAZE;
+            }
+            return new GameConfiguration(windowWidth, windowHeight, maze, drawCollider);
+        }
+
+        public GameConfigurationBuilder setWindowWidth(int windowWidth) {
+            this.windowWidth = windowWidth;
+            return this;
+        }
+
+        public GameConfigurationBuilder setWindowHeight(int windowHeight) {
+            this.windowHeight = windowHeight;
+            return this;
+        }
+
+        public GameConfigurationBuilder setMaze(int[][] maze) {
+            this.maze = maze;
+            return this;
+        }
+
+        public GameConfigurationBuilder setDrawCollider(boolean drawCollider) {
+            this.drawCollider = drawCollider;
+            return this;
+        }
     }
 }

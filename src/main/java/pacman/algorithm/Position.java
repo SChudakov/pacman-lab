@@ -1,6 +1,6 @@
-package pacman.algo;
+package pacman.algorithm;
 
-import static pacman.algo.Direction.*;
+import static pacman.algorithm.Direction.*;
 
 
 public class Position {
@@ -16,7 +16,7 @@ public class Position {
         return new Position(row, column);
     }
 
-    public Direction dirTo(Position pos) {
+    public Direction directionTo(Position pos) {
         if (row == pos.row) {
             if (col < pos.col) {
                 return RIGHT;

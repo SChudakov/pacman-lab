@@ -5,22 +5,39 @@ import pacman.graphics.Renderer;
 
 public class GameContainer implements Runnable {
     private Thread thread;
-    private GameManager gManager;
+    private GameManager gameManager;
     private Renderer renderer;
     private GameConfiguration configuration;
 
     private boolean isRunning = false;
 
-    public GameContainer(GameConfiguration conf, Stage mainStage) {
-        this.configuration = conf;
-
-        this.gManager = new GameManager(conf);
-        this.renderer = new Renderer(conf, mainStage);
-        this.thread = new Thread(this);
+    public GameManager getGameManager() {
+        return gameManager;
     }
 
     public GameConfiguration getConfiguration() {
         return configuration;
+    }
+
+    public GameContainer(GameConfiguration configuration, Stage mainStage) {
+        this.configuration = configuration;
+        this.gameManager = new GameManager(configuration);
+        this.renderer = new Renderer(configuration, mainStage);
+        this.thread = new Thread(this);
+    }
+
+    public void run() {
+        isRunning = true;
+
+        TimeTracker tracker = new TimeTracker(30);
+
+        while (isRunning) {
+            if (tracker.newFrame()) {
+                gameManager.update(this, tracker.getTimePassed());
+                gameManager.render(this, renderer);
+            }
+        }
+        cleanUp();
     }
 
     public void start() {
@@ -31,13 +48,17 @@ public class GameContainer implements Runnable {
     }
 
     public void stop() {
-        if (!isRunning)
+        if (!isRunning) {
             return;
-
+        }
         isRunning = false;
-
         renderer.cleanUp();
     }
+
+    private void cleanUp() {
+        renderer.cleanUp();
+    }
+
 
     private static class TimeTracker {
         private int fps;
@@ -67,30 +88,5 @@ public class GameContainer implements Runnable {
         double getTimePassed() {
             return timePassed;
         }
-    }
-
-    public void run() {
-        isRunning = true;
-
-        TimeTracker tracker = new TimeTracker(30);
-
-        while (isRunning) {
-            if (tracker.newFrame()) {
-                gManager.update(this, tracker.getTimePassed());
-
-                gManager.render(this, renderer);
-            }
-        }
-
-        cleanUp();
-    }
-
-
-    private void cleanUp() {
-        renderer.cleanUp();
-    }
-
-    public GameManager getgManager() {
-        return gManager;
     }
 }

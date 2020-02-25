@@ -1,4 +1,4 @@
-package pacman.algo;
+package pacman.algorithm;
 
 import pacman.game.GameConfiguration;
 import pacman.object.GameObject;
@@ -6,8 +6,8 @@ import pacman.object.GameObject;
 import java.util.Arrays;
 import java.util.List;
 
-import static pacman.algo.Direction.*;
-import static pacman.algo.Direction.LEFT;
+import static pacman.algorithm.Direction.*;
+import static pacman.algorithm.Direction.LEFT;
 
 public abstract class AbstractShortestPath implements ShortestPath {
     protected final GameConfiguration conf;

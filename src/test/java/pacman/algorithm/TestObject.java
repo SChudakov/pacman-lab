@@ -1,4 +1,4 @@
-package pacman.algo;
+package pacman.algorithm;
 
 import pacman.game.GameConfiguration;
 import pacman.object.GameObject;

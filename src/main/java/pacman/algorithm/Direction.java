@@ -1,4 +1,4 @@
-package pacman.algo;
+package pacman.algorithm;
 
 public enum Direction {
     UP {

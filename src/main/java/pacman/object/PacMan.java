@@ -1,18 +1,24 @@
 package pacman.object;
 
-import pacman.algo.BfsShortestPath;
-import pacman.algo.DfsShortestPath;
-import pacman.algo.Direction;
-import pacman.algo.ShortestPath;
-import pacman.game.GameContainer;
-import pacman.game.GameConfiguration;
-import pacman.graphics.Renderer;
-import pacman.graphics.AnimatedImage;
 import javafx.geometry.Rectangle2D;
-
-import static pacman.algo.Direction.*;
+import pacman.algorithm.AStartShortestPath;
+import pacman.algorithm.BFSShortestPath;
+import pacman.algorithm.Direction;
+import pacman.algorithm.ShortestPath;
+import pacman.game.GameConfiguration;
+import pacman.game.GameContainer;
+import pacman.graphics.AnimatedImage;
+import pacman.graphics.Renderer;
 
 import java.util.List;
+import java.util.Objects;
+
+import static pacman.algorithm.Direction.DOWN;
+import static pacman.algorithm.Direction.LEFT;
+import static pacman.algorithm.Direction.NONE;
+import static pacman.algorithm.Direction.RIGHT;
+import static pacman.algorithm.Direction.SAME;
+import static pacman.algorithm.Direction.UP;
 
 public class PacMan extends GameObject {
     private AnimatedImage pacman;
@@ -21,11 +27,13 @@ public class PacMan extends GameObject {
     private List<GameObject> targets;
     private Direction currentDir = NONE;
 
-    public PacMan(int row, int column, GameConfiguration conf, List<GameObject> targets) {
-        super(conf.getTileX(column), conf.getTileY(row), conf.getTileWidth(), conf.getTileHeight(), "Pacman");
+    public PacMan(int row, int column, GameConfiguration configuration, List<GameObject> targets) {
+        super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
+        Objects.requireNonNull(configuration);
+        Objects.requireNonNull(targets);
 
-        this.speed = 400;
-        this.searchAlg = new DfsShortestPath(conf);
+        this.speed = 100;
+        this.searchAlg = new BFSShortestPath(configuration);
         this.pacman = new AnimatedImage("images/pacman_sprites.png", 400, 4, 4, 0, 0, 36, 36);
 
         this.targets = targets;
@@ -69,12 +77,12 @@ public class PacMan extends GameObject {
     }
 
     @Override
-    public void update(GameContainer gc, double dt) {
+    public void update(GameContainer gameContainer, double dt) {
         targets.removeIf(GameObject::isDead);
-        GameConfiguration conf = gc.getConfiguration();
-        Direction nextDir = searchAlg.getNextDirection(conf, this, targets);
+        GameConfiguration configuration = gameContainer.getConfiguration();
+        Direction nextDir = searchAlg.getNextDirection(configuration, this, targets);
 
-        go(nextDir, dt, conf);
+        go(nextDir, dt, configuration);
         pacman.nextFrame(dt);
     }
 
