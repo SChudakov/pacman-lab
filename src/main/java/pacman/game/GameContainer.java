@@ -76,8 +76,7 @@ public class GameContainer implements Runnable {
 
         while (isRunning) {
             if (tracker.newFrame()) {
-                gManager.update(this, (double) tracker.getTimePassed());
-                renderer.clear();
+                gManager.update(this, tracker.getTimePassed());
 
                 gManager.render(this, renderer);
             }

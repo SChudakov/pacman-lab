@@ -19,6 +19,10 @@ public abstract class GameObject implements Component {
         this.collider = new Collider(this);
     }
 
+    public GameObject(String tag){
+        this.tag = tag;
+    }
+
     public double getCenterX() {
         return x + width / 2;
     }

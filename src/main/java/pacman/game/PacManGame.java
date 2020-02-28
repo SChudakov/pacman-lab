@@ -7,7 +7,10 @@ public class PacManGame extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        GameConfiguration configuration = new GameConfiguration.GameConfigurationBuilder().build();
+        GameConfiguration configuration =
+                new GameConfiguration.GameConfigurationBuilder()
+                        .setDrawCollider(false)
+                        .build();
         GameContainer gc = new GameContainer(configuration, primaryStage);
         gc.start();
         primaryStage.setOnCloseRequest(e -> exitPlatform(primaryStage));

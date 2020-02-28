@@ -24,7 +24,7 @@ public class PacMan extends GameObject {
     public PacMan(int row, int column, GameConfiguration conf, List<GameObject> targets) {
         super(conf.getTileX(column), conf.getTileY(row), conf.getTileWidth(), conf.getTileHeight(), "Pacman");
 
-        this.speed = 100;
+        this.speed = 400;
         this.searchAlg = new DfsShortestPath(conf);
         this.pacman = new AnimatedImage("images/pacman_sprites.png", 400, 4, 4, 0, 0, 36, 36);
 
@@ -33,13 +33,14 @@ public class PacMan extends GameObject {
 
     private void go(Direction nextDir, double dt, GameConfiguration conf) {
         if (nextDir == NONE) {
+            System.out.println("Count = " + searchAlg.getCount());
             return;
         }
         if (nextDir != SAME && nextDir != currentDir) {
             if ((currentDir == LEFT || currentDir == RIGHT) && (nextDir == DOWN || nextDir == UP)) {
                 int col = conf.getColumn(this);
                 setCenterX(conf.getTileCenterX(col));
-            } else if((currentDir == DOWN || currentDir == UP) && (nextDir == RIGHT || nextDir == LEFT)){
+            } else if ((currentDir == DOWN || currentDir == UP) && (nextDir == RIGHT || nextDir == LEFT)) {
                 int row = conf.getRow(this);
                 setCenterY(conf.getTileCenterY(row));
             }
@@ -79,15 +80,20 @@ public class PacMan extends GameObject {
 
     @Override
     public void render(GameContainer gc, Renderer r) {
+        GameConfiguration conf = gc.getConfiguration();
         Rectangle2D pos = pacman.getCurrentFramePosition();
         r.drawImage(pacman.getImage(), pos.getMinX(), pos.getMinY(),
                 pos.getWidth(), pos.getHeight(), x, y,
                 pos.getWidth(), pos.getHeight());
+
+        if (conf.isDrawCollider()) {
+            r.drawRectangle(collider.getX(), collider.getY(), collider.getColliderWidth(), collider.getColliderHeight());
+        }
     }
 
 
     @Override
-    public void collideWith(GameObject obj){
+    public void collideWith(GameObject obj) {
         if (obj instanceof PurplePoint) {
             obj.makeDead();
         }

@@ -36,6 +36,7 @@ public class Renderer {
 		height = conf.getWindowHeight();
 		
 		this.graphics = canvas.getGraphicsContext2D();
+		setCurrentColor(0xffffffff);
 	}
 
 	private void setCurrentColor(int color) {
@@ -46,11 +47,6 @@ public class Renderer {
         this.graphics.setFill(Color.color(r, g, b, a));
 	}
 
-	public void clear() {
-	    this.setCurrentColor(0xff000000);
-	    this.graphics.fillRect(0, 0, this.width, this.height);
-    }
-
 	public void drawImage(Image image, double offX, double offY) {
 	    this.graphics.drawImage(image, offX, offY);
 	}
@@ -59,6 +55,10 @@ public class Renderer {
 	        double dx, double dy, double dw, double dh) {
         this.graphics.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh);
     }
+
+    public void drawRectangle(double x, double y, double width, double height){
+		this.graphics.fillRect(x, y, width, height);
+	}
 
 	public void cleanUp() {
 		mainStage.close();

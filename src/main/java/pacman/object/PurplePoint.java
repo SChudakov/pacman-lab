@@ -10,15 +10,29 @@ public class PurplePoint extends GameObject {
     private Image img;
 
     public PurplePoint(int row, int column, GameConfiguration conf, String tag) {
-        super(conf.getTileX(column), conf.getTileY(row), conf.getTileWidth(), conf.getTileHeight(), tag);
-
+        super(tag);
         this.img = new Image(imagePath);
-        this.x += (conf.getTileWidth() - img.getWidth()) / 2;
-        this.y += (conf.getTileHeight() - img.getHeight()) / 2;
+
+        double centerX = conf.getTileCenterX(column);
+        double centerY = conf.getTileCenterY(row);
+
+        this.x = centerX - img.getWidth() / 2;
+        this.y = centerY - img.getHeight() / 2;
+        this.width = img.getWidth();
+        this.height = img.getHeight();
+        this.collider = new Collider(this);
     }
 
     @Override
     public void render(GameContainer gc, Renderer r) {
+        GameConfiguration conf = gc.getConfiguration();
         r.drawImage(img, x, y);
+
+        if (conf.isDrawCollider()) {
+            r.drawRectangle(collider.getX(),
+                    collider.getY(),
+                    collider.getColliderWidth(),
+                    collider.getColliderHeight());
+        }
     }
 }

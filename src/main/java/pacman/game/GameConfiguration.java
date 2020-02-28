@@ -20,6 +20,7 @@ public class GameConfiguration {
         private int windowWidth;
         private int windowHeight;
         private int[][] maze;
+        private boolean drawCollider;
 
         public GameConfiguration build() {
             if (windowWidth <= 0) {
@@ -31,7 +32,7 @@ public class GameConfiguration {
             if (maze == null) {
                 maze = DEFAULT_MAZE;
             }
-            return new GameConfiguration(windowWidth, windowHeight, maze);
+            return new GameConfiguration(windowWidth, windowHeight, maze, drawCollider);
         }
 
         public GameConfigurationBuilder setWindowWidth(int windowWidth) {
@@ -49,6 +50,10 @@ public class GameConfiguration {
             return this;
         }
 
+        public GameConfigurationBuilder setDrawCollider(boolean drawCollider) {
+            this.drawCollider = drawCollider;
+            return this;
+        }
     }
 
 
@@ -57,17 +62,23 @@ public class GameConfiguration {
     private int[][] maze;
     private int rowNum;
     private int columnNum;
+    private boolean drawCollider;
 
-    private GameConfiguration(int windowWidth, int windowHeight, int[][] maze) {
+    private GameConfiguration(int windowWidth, int windowHeight, int[][] maze, boolean drawCollider) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         this.maze = maze;
         this.rowNum = maze.length;
         this.columnNum = maze[0].length;
+        this.drawCollider = drawCollider;
     }
 
     public boolean isWall(int row, int col) {
         return maze[row][col] == 0;
+    }
+
+    public boolean isDrawCollider() {
+        return drawCollider;
     }
 
     public int getWindowWidth() {

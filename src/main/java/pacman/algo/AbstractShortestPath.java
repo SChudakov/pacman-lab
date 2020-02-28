@@ -34,6 +34,11 @@ public abstract class AbstractShortestPath implements ShortestPath {
         return Arrays.asList(Position.of(row + 1, col), Position.of(row, col + 1), Position.of(row - 1, col), Position.of(row, col - 1));
     }
 
+    @Override
+    public int getCount() {
+        return count;
+    }
+
     protected Direction getDirection(int i, int j) {
         if (i == 1) {
             return DOWN;
