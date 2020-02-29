@@ -1,8 +1,9 @@
 package pacman.object;
 
 import javafx.geometry.Rectangle2D;
-import pacman.algorithm.AStartShortestPath;
 import pacman.algorithm.Direction;
+import pacman.algorithm.GreedyShortestPath;
+import pacman.algorithm.Heuristic;
 import pacman.algorithm.ShortestPath;
 import pacman.game.GameConfiguration;
 import pacman.game.GameContainer;
@@ -20,11 +21,14 @@ import static pacman.algorithm.Direction.SAME;
 import static pacman.algorithm.Direction.UP;
 
 public class PacMan extends GameObject {
-    private AnimatedImage pacman;
+    private static final Heuristic ZERO_HEURISTIC = (p1, p2) -> 0.0;
+    private static final Heuristic DEFAULT_HEURISTIC = (p1, p2) -> Math.abs(p1.row - p2.row) + Math.abs(p1.col - p2.col);
+
     private int speed;
+    private AnimatedImage pacman;
     private ShortestPath searchAlg;
     private List<GameObject> targets;
-    private Direction currentDir = NONE;
+    private Direction currentDirection = NONE;
 
     public PacMan(int row, int column, GameConfiguration configuration, List<GameObject> targets) {
         super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
@@ -32,7 +36,7 @@ public class PacMan extends GameObject {
         Objects.requireNonNull(targets);
 
         this.speed = 100;
-        this.searchAlg = new AStartShortestPath(configuration, (p1, p2) -> 0.0);
+        this.searchAlg = new GreedyShortestPath(configuration, DEFAULT_HEURISTIC);
         this.pacman = new AnimatedImage("images/pacman_sprites.png", 400, 4, 4, 0, 0, 36, 36);
 
         this.targets = targets;
@@ -43,18 +47,18 @@ public class PacMan extends GameObject {
             System.out.println("Count = " + searchAlg.getCount());
             return;
         }
-        if (nextDir != SAME && nextDir != currentDir) {
-            if ((currentDir == LEFT || currentDir == RIGHT) && (nextDir == DOWN || nextDir == UP)) {
+        if (nextDir != SAME && nextDir != currentDirection) {
+            if ((currentDirection == LEFT || currentDirection == RIGHT) && (nextDir == DOWN || nextDir == UP)) {
                 int col = conf.getColumn(this);
                 setCenterX(conf.getTileCenterX(col));
-            } else if ((currentDir == DOWN || currentDir == UP) && (nextDir == RIGHT || nextDir == LEFT)) {
+            } else if ((currentDirection == DOWN || currentDirection == UP) && (nextDir == RIGHT || nextDir == LEFT)) {
                 int row = conf.getRow(this);
                 setCenterY(conf.getTileCenterY(row));
             }
-            currentDir = nextDir;
+            currentDirection = nextDir;
         }
         double posChange = dt * speed;
-        switch (currentDir) {
+        switch (currentDirection) {
             case RIGHT:
                 pacman.setOffSetY(0);
                 this.x += posChange;
@@ -105,5 +109,4 @@ public class PacMan extends GameObject {
             obj.makeDead();
         }
     }
-
 }

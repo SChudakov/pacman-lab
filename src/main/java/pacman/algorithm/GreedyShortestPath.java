@@ -1,17 +1,14 @@
 package pacman.algorithm;
 
 import pacman.game.GameConfiguration;
-import pacman.object.GameObject;
 
-import java.util.List;
-
-public class GreedyShortestPath extends AbstractShortestPath {
-    public GreedyShortestPath(GameConfiguration conf) {
-        super(conf);
+public class GreedyShortestPath extends AbstractBestFirstShortestPath {
+    public GreedyShortestPath(GameConfiguration configuration, Heuristic heuristic) {
+        super(configuration, heuristic);
     }
 
     @Override
-    public Direction getNextDirection(GameConfiguration conf, GameObject obj, List<GameObject> targets) {
-        return null;
+    double getTentativeScore(double gScore, double fScore) {
+        return fScore;
     }
 }
