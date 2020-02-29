@@ -6,8 +6,11 @@ import pacman.object.GameObject;
 import java.util.Arrays;
 import java.util.List;
 
-import static pacman.algorithm.Direction.*;
+import static pacman.algorithm.Direction.DOWN;
 import static pacman.algorithm.Direction.LEFT;
+import static pacman.algorithm.Direction.RIGHT;
+import static pacman.algorithm.Direction.SAME;
+import static pacman.algorithm.Direction.UP;
 
 public abstract class AbstractShortestPath implements ShortestPath {
     protected final GameConfiguration conf;
@@ -78,5 +81,18 @@ public abstract class AbstractShortestPath implements ShortestPath {
         for (GameObject obj : targets) {
             visited[conf.getRow(obj)][conf.getColumn(obj)] = 2;
         }
+    }
+
+    public Direction getDirection(Direction[][] directions, int i, int j) {
+        Direction direction = null;
+        while (directions[i][j] != null) {
+            direction = directions[i][j];
+            i = getRow(direction, i);
+            j = getColumn(direction, j);
+        }
+        if (direction == null) {
+            return SAME;
+        }
+        return direction.getOpposite();
     }
 }

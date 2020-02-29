@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Queue;
 
 import static pacman.algorithm.Direction.NONE;
-import static pacman.algorithm.Direction.SAME;
 
 public class BFSShortestPath extends AbstractShortestPath {
     private static int count = 0;
@@ -51,18 +50,5 @@ public class BFSShortestPath extends AbstractShortestPath {
             }
         }
         return NONE;
-    }
-
-    private Direction getDirection(Direction[][] directions, int i, int j) {
-        Direction direction = null;
-        while (directions[i][j] != null) {
-            direction = directions[i][j];
-            i = getRow(direction, i);
-            j = getColumn(direction, j);
-        }
-        if (direction == null) {
-            return SAME;
-        }
-        return direction.getOpposite();
     }
 }

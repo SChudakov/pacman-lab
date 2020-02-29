@@ -14,43 +14,49 @@ import java.util.Queue;
 import java.util.Set;
 
 public class AStartShortestPath extends AbstractShortestPath {
-    private AStartHeuristic admissibleHeuristic;
+    private AStartHeuristic aStartHeuristic;
 
-    private Queue<Pair<Double, Position>> openList;
+    private Queue<Pair<Double, Position>> queue;
+    private Set<Position> openList;
     private Set<Position> closedList;
     private Map<Position, Double> gScoreMap;
-    private Map<Position, Direction> cameFrom;
 
-    public AStartShortestPath(GameConfiguration conf) {
-        super(conf);
+    public AStartShortestPath(GameConfiguration configuration, AStartHeuristic heuristic) {
+        super(configuration);
+        this.aStartHeuristic = heuristic;
     }
 
     @Override
-    public Direction getNextDirection(GameConfiguration conf, GameObject obj, List<GameObject> targets) {
-        openList = new PriorityQueue<>(Comparator.comparingDouble(Pair::getKey));
+    public Direction getNextDirection(GameConfiguration configuration, GameObject object, List<GameObject> targets) {
+        if (targets.isEmpty()) {
+            return Direction.NONE;
+        }
+        queue = new PriorityQueue<>(Comparator.comparingDouble(Pair::getKey));
+        openList = new HashSet<>();
         closedList = new HashSet<>();
         gScoreMap = new HashMap<>();
-        cameFrom = new HashMap<>();
 
-        Position startPosition = conf.getPosition(obj);
-        int[][] visited = new int[conf.getRowNum()][conf.getColumnNum()];
-        initVisited(targets, conf, visited);
-        Direction[][] directions = new Direction[conf.getRowNum()][conf.getColumnNum()];
-        return aStartImpl(visited, directions, startPosition);
+        Direction[][] directions = new Direction[configuration.getRowNum()][configuration.getColumnNum()];
+        Position startPosition = configuration.getPosition(object);
+        Position targetPosition = conf.getPosition(targets.get(0));
+        return aStartImpl(directions, startPosition, targetPosition);
     }
 
-    private Direction aStartImpl(int[][] visited, Direction[][] directions, Position startPosition) {
-        gScoreMap.put(startPosition, 0.0);
-        openList.add(Pair.of(0.0, startPosition));
+    private Direction aStartImpl(Direction[][] directions, Position start, Position target) {
+        gScoreMap.put(start, 0.0);
+        queue.add(Pair.of(0.0, start));
+        openList.add(start);
 
-        while (!openList.isEmpty()) {
-            Pair<Double, Position> p = openList.remove();
+        while (!queue.isEmpty()) {
+            Pair<Double, Position> p = queue.remove();
             double distance = p.getKey();
             Position currentPosition = p.getRight();
 
-            if (visited[currentPosition.row][currentPosition.col] == 2) { // finished search
-                throw new UnsupportedOperationException();
+            if (currentPosition.equals(target)) { // finished search
+                return getDirection(directions, currentPosition.row, currentPosition.col);
             }
+
+            expandPosition(currentPosition, distance, directions, target);
 
             closedList.add(currentPosition);
         }
@@ -58,18 +64,37 @@ public class AStartShortestPath extends AbstractShortestPath {
         return Direction.NONE;
     }
 
-    private void expandPosition(Position position, double distance, Set<Position> targetsSet,
-                                int[][] visited, Direction[][] directions) {
+    private void expandPosition(Position position, double distance,
+                                Direction[][] directions, Position target) {
         List<Position> successors = getSteps(position);
 
         for (Position successor : successors) {
             int row = successor.row;
             int col = successor.col;
-            if (validPosition(successor) && visited[row][col] != 1) {
-                double tentativeGScore = gScoreMap.get(position) + 1;
-//                double fScore = tentativeGScore + admissibleHeuristic.estimateDistance(successor, );
-            }
+            if (validPosition(successor)) {
+                double tentativeGScore = gScoreMap.get(position) + 1.0; // add one step
+                double fScore = tentativeGScore + aStartHeuristic.estimateDistance(successor, target);
 
+                if (openList.contains(successor) || closedList.contains(successor)) { // visited vertex
+                    if (tentativeGScore >= gScoreMap.get(successor)) { // non-improving path
+                        continue;
+                    }
+
+                    directions[row][col] = getDirection(position.row - row, position.col - col);
+                    gScoreMap.put(successor, tentativeGScore);
+
+                    if (closedList.contains(successor)) { // it's in the closed list => move to open list
+                        closedList.remove(successor);
+                        openList.add(successor);
+                    }
+                    // no decrease key operation => just add to the queue
+                    queue.add(Pair.of(fScore, successor));
+                } else { // encountered a new vertex.
+                    directions[row][col] = getDirection(position.row - row, position.col - col);
+                    gScoreMap.put(successor, tentativeGScore);
+                    queue.add(Pair.of(fScore, successor)); // put on the queue
+                }
+            }
         }
     }
 }

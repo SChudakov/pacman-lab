@@ -2,7 +2,6 @@ package pacman.object;
 
 import javafx.geometry.Rectangle2D;
 import pacman.algorithm.AStartShortestPath;
-import pacman.algorithm.BFSShortestPath;
 import pacman.algorithm.Direction;
 import pacman.algorithm.ShortestPath;
 import pacman.game.GameConfiguration;
@@ -33,7 +32,7 @@ public class PacMan extends GameObject {
         Objects.requireNonNull(targets);
 
         this.speed = 100;
-        this.searchAlg = new BFSShortestPath(configuration);
+        this.searchAlg = new AStartShortestPath(configuration, (p1, p2) -> 0.0);
         this.pacman = new AnimatedImage("images/pacman_sprites.png", 400, 4, 4, 0, 0, 36, 36);
 
         this.targets = targets;
