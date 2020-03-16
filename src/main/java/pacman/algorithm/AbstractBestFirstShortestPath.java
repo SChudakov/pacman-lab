@@ -42,7 +42,7 @@ public abstract class AbstractBestFirstShortestPath extends AbstractShortestPath
 
         Direction[][] directions = new Direction[configuration.getRowNum()][configuration.getColumnNum()];
         Position startPosition = configuration.getPosition(object);
-        Position targetPosition = conf.getPosition(targets.get(0));
+        Position targetPosition = this.configuration.getPosition(targets.get(0));
         return aStartImpl(directions, startPosition, targetPosition);
     }
 

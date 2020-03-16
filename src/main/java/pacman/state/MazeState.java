@@ -1,6 +1,5 @@
 package pacman.state;
 
-import org.apache.commons.lang3.tuple.Pair;
 import pacman.game.GameConfiguration;
 import pacman.game.GameContainer;
 import pacman.game.State;
@@ -15,7 +14,6 @@ import pacman.object.Wall;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MazeState extends State {
@@ -33,34 +31,21 @@ public class MazeState extends State {
     }
 
 
-    public List<GameObject> buildMaze(ObjectManager manager, GameConfiguration conf) {
-        List<Pair<Integer, Integer>> notFilledPoints = new ArrayList<>();
-        for (int i = 0; i < conf.getRowNum(); i++) {
-            for (int j = 0; j < conf.getColumnNum(); j++) {
-                if (conf.isWall(i, j)) {
-                    manager.addObject(new Wall(i, j, conf, WALL_TAG));
+    public List<GameObject> buildMaze(ObjectManager manager, GameConfiguration configuration) {
+        List<GameObject> result = new ArrayList<>();
+        for (int i = 0; i < configuration.getRowNum(); i++) {
+            for (int j = 0; j < configuration.getColumnNum(); j++) {
+                if (configuration.isWall(i, j)) {
+                    manager.addObject(new Wall(i, j, configuration, WALL_TAG));
                 } else if (i != 1 || j != 1) {
-                    notFilledPoints.add(Pair.of(i, j));
+                    PurplePoint point = new PurplePoint(i, j, configuration, String.format(POINT_TAG, j, i));
+                    manager.addObject(point);
+                    result.add(point);
                 }
             }
         }
 
-        List<GameObject> result = new ArrayList<>();
-        Pair<Integer, Integer> randomPoint = getRandom(notFilledPoints);
-        int i = randomPoint.getKey();
-        int j = randomPoint.getValue();
-
-        GameObject point = new PurplePoint(i, j, conf, String.format(POINT_TAG, j, i));
-        manager.addObject(point);
-        result.add(point);
-
         return result;
-    }
-
-    private Pair<Integer, Integer> getRandom(List<Pair<Integer, Integer>> objects) {
-        Random random = new Random();
-        int randomPosition = random.nextInt(objects.size());
-        return objects.get(randomPosition);
     }
 
     @Override

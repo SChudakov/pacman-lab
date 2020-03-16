@@ -13,11 +13,11 @@ import static pacman.algorithm.Direction.SAME;
 import static pacman.algorithm.Direction.UP;
 
 public abstract class AbstractShortestPath implements ShortestPath {
-    protected final GameConfiguration conf;
+    protected final GameConfiguration configuration;
     protected int count = 0;
 
-    public AbstractShortestPath(GameConfiguration conf) {
-        this.conf = conf;
+    public AbstractShortestPath(GameConfiguration configuration) {
+        this.configuration = configuration;
     }
 
     protected void invokeAlgorithm() {
@@ -25,7 +25,7 @@ public abstract class AbstractShortestPath implements ShortestPath {
     }
 
     protected boolean validPosition(int i, int j) {
-        return i >= 0 && j >= 0 && i < conf.getRowNum() && j < conf.getColumnNum() && !conf.isWall(i, j);
+        return i >= 0 && j >= 0 && i < configuration.getRowNum() && j < configuration.getColumnNum() && !configuration.isWall(i, j);
     }
 
     protected boolean validPosition(Position pos) {

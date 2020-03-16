@@ -24,7 +24,7 @@ public class PacMan extends GameObject {
     private static final String IMAGE_PATH = "images/pacman_sprites.png";
 
     private AnimatedImage pacman;
-    private ShortestPath searchAlg;
+    private ShortestPath searchAlgorithm;
     private List<GameObject> targets;
 
     private Direction currentDirection;
@@ -34,7 +34,7 @@ public class PacMan extends GameObject {
         super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
 
         this.pacman = new AnimatedImage(IMAGE_PATH, 400, 4, 4, 0, 0, 36, 36);
-        this.searchAlg = new GreedyShortestPath(configuration, AbstractBestFirstShortestPath.DEFAULT_HEURISTIC);
+        this.searchAlgorithm = new GreedyShortestPath(configuration, AbstractBestFirstShortestPath.DEFAULT_HEURISTIC);
         this.targets = Objects.requireNonNull(targets, "Targets should not be null");
 
         this.currentDirection = NONE;
@@ -78,9 +78,9 @@ public class PacMan extends GameObject {
         targets.removeIf(GameObject::isDead);
 
         GameConfiguration configuration = gameContainer.getConfiguration();
-        Direction nextDir = searchAlg.getNextDirection(configuration, this, targets);
+        Direction nextDirection = searchAlgorithm.getNextDirection(configuration, this, targets);
 
-        go(nextDir, dt, configuration);
+        go(nextDirection, dt, configuration);
         pacman.nextFrame(dt);
     }
 
