@@ -4,28 +4,33 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
 public class AnimatedImage {
-    
-    private double totalDuration;
+
     private Image image;
+
+    private double totalDuration;
+
     private final int count;
     private final int columns;
+
     private int offsetX;
     private int offsetY;
+
     private final int frameWidth;
     private final int frameHeight;
     
     private int currentIndex;
-    private long passedTime;
+
     private long startTime;
-    
+    private long passedTime;
+
     public AnimatedImage (
             String imageName,
-            int totalDurationInMilis, 
+            int totalDurationInMillis,
             int count,   int columns,
             int offsetX, int offsetY,
             int frameWidth,   int frameHeight) {
         this.image = new Image(imageName);
-        this.totalDuration = totalDurationInMilis;
+        this.totalDuration = totalDurationInMillis;
         this.count     = count;
         this.columns   = columns;
         this.offsetX   = offsetX;

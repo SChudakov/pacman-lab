@@ -14,6 +14,8 @@ import java.util.Queue;
 import java.util.Set;
 
 public abstract class AbstractBestFirstShortestPath extends AbstractShortestPath {
+    public static final Heuristic ZERO_HEURISTIC = (p1, p2) -> 0.0;
+    public static final Heuristic DEFAULT_HEURISTIC = (p1, p2) -> Math.abs(p1.row - p2.row) + Math.abs(p1.col - p2.col);
 
     private Heuristic heuristic;
 
