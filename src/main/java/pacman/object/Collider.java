@@ -8,7 +8,7 @@ public class Collider {
         this.width = obj.getWidth() / 3;
         this.height = obj.getHeight() / 3;
         this.obj = obj;
-        System.out.printf("Width = %f, height = %f, x = %f, y = %f\n", width, height, getCenterX(), getCenterY());
+//        System.out.printf("Width = %f, height = %f, x = %f, y = %f\n", width, height, getCenterX(), getCenterY());
     }
 
     public double getX() {

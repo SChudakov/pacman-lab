@@ -30,6 +30,8 @@ public class PacMan extends GameObject {
     private Direction currentDirection;
     private int speed;
 
+    private int score;
+
     public PacMan(int row, int column, GameConfiguration configuration, List<GameObject> targets) {
         super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
 
@@ -103,6 +105,7 @@ public class PacMan extends GameObject {
     @Override
     public void collideWith(GameObject obj) {
         if (obj instanceof PurplePoint) {
+            System.out.println("PackMan has eaten a point, current sctore: " + ++score);
             obj.makeDead();
         }
     }
