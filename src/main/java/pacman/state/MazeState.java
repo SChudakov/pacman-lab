@@ -1,5 +1,6 @@
 package pacman.state;
 
+import pacman.algorithm.MiniMaxShortestPath;
 import pacman.game.GameConfiguration;
 import pacman.game.GameContainer;
 import pacman.game.State;
@@ -26,8 +27,15 @@ public class MazeState extends State {
 
         List<GameObject> targets = buildMaze(manager, configuration);
 
-        manager.addObject(new PacMan(1, 1, configuration, targets));
-        manager.addObject(new Ghost(9, 18, configuration, 100));
+        PacMan pacMan = new PacMan(1, 1, configuration);
+        Ghost ghost = new Ghost(9, 18, configuration, 100);
+
+        MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(pacMan, ghost, targets);
+        pacMan.setSearchAlgorithm(searchAlgorithm);
+        ghost.setSearchAlgorithm(searchAlgorithm);
+
+        manager.addObject(pacMan);
+        manager.addObject(ghost);
     }
 
 

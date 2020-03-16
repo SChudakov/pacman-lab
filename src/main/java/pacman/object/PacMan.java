@@ -1,17 +1,12 @@
 package pacman.object;
 
 import javafx.geometry.Rectangle2D;
-import pacman.algorithm.AbstractBestFirstShortestPath;
 import pacman.algorithm.Direction;
-import pacman.algorithm.GreedyShortestPath;
-import pacman.algorithm.ShortestPath;
+import pacman.algorithm.MiniMaxShortestPath;
 import pacman.game.GameConfiguration;
 import pacman.game.GameContainer;
 import pacman.graphics.AnimatedImage;
 import pacman.graphics.Renderer;
-
-import java.util.List;
-import java.util.Objects;
 
 import static pacman.algorithm.Direction.DOWN;
 import static pacman.algorithm.Direction.LEFT;
@@ -24,24 +19,26 @@ public class PacMan extends GameObject {
     private static final String IMAGE_PATH = "images/pacman_sprites.png";
 
     private AnimatedImage pacman;
-    private ShortestPath searchAlgorithm;
-    private List<GameObject> targets;
+    private MiniMaxShortestPath searchAlgorithm;
 
     private Direction currentDirection;
     private int speed;
 
     private int score;
 
-    public PacMan(int row, int column, GameConfiguration configuration, List<GameObject> targets) {
+    public void setSearchAlgorithm(MiniMaxShortestPath searchAlgorithm) {
+        this.searchAlgorithm = searchAlgorithm;
+    }
+
+
+    public PacMan(int row, int column, GameConfiguration configuration) {
         super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
 
         this.pacman = new AnimatedImage(IMAGE_PATH, 400, 4, 4, 0, 0, 36, 36);
-        this.searchAlgorithm = new GreedyShortestPath(configuration, AbstractBestFirstShortestPath.DEFAULT_HEURISTIC);
-        this.targets = Objects.requireNonNull(targets, "Targets should not be null");
-
         this.currentDirection = NONE;
         this.speed = 100;
     }
+
 
     protected void go(Direction nextDir, double dt, GameConfiguration configuration) {
         if (nextDir == NONE) {
@@ -77,10 +74,8 @@ public class PacMan extends GameObject {
 
     @Override
     public void update(GameContainer gameContainer, double dt) {
-        targets.removeIf(GameObject::isDead);
-
         GameConfiguration configuration = gameContainer.getConfiguration();
-        Direction nextDirection = searchAlgorithm.getNextDirection(configuration, this, targets);
+        Direction nextDirection = searchAlgorithm.getPacmanNextDirection(configuration);
 
         go(nextDirection, dt, configuration);
         pacman.nextFrame(dt);
