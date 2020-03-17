@@ -103,6 +103,7 @@ public class PacMan extends GameObject {
         if (obj instanceof PurplePoint) {
             System.out.println("PackMan has eaten a point, current score: " + ++score);
             if (obj.equals(searchAlgorithm.getPacmanTarget())) {
+                System.out.println("Set target to null");
                 searchAlgorithm.setPacmanTarget(null);
             }
             obj.makeDead();

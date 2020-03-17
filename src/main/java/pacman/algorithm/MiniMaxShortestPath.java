@@ -17,7 +17,7 @@ import static pacman.algorithm.Direction.NONE;
 
 public class MiniMaxShortestPath extends AbstractShortestPath {
     private static final long SEED = 19L;
-    private static final double RANDOM_STEP_PROBABILITY = 0.1;
+    private static final double RANDOM_STEP_PROBABILITY = 0.0;
 
     private PacMan pacman;
     private Ghost ghost;
@@ -43,7 +43,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         this.ghost = Objects.requireNonNull(ghost, "ghost should not be null!");
         this.pacmanTargets = Objects.requireNonNull(pacmanTargets, "targets should not be null!");
         this.random = new Random(SEED);
-        this.miniMaxDepth = 4;
+        this.miniMaxDepth = 6;
     }
 
 
@@ -98,23 +98,23 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
             return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, Integer.MIN_VALUE), Pair.of(NONE, Integer.MAX_VALUE));
         }
 
-        int pacman2targetDistance = distance(pacmanPosition, ghostPosition);
-        int pacman2ghostDistance = distance(pacmanPosition, configuration.getPosition(pacmanTarget));
-        int ghost2pacmanDistance = distance(pacmanPosition, ghostPosition);
-        if (depth == miniMaxDepth) {
-            return Pair.of(Triple.of(NONE, pacman2targetDistance, pacman2ghostDistance), Pair.of(NONE, ghost2pacmanDistance));
-        }
-
         if (pacmanVisited[pacmanPosition.row][pacmanPosition.col] == 2) {
-            return Pair.of(Triple.of(NONE, 0, pacman2ghostDistance), Pair.of(NONE, ghost2pacmanDistance));
+            return Pair.of(Triple.of(NONE, 0, Integer.MAX_VALUE), Pair.of(NONE, Integer.MAX_VALUE));
         }
         if (pacmanVisited[pacmanPosition.row][pacmanPosition.col] == 3) {
-            return Pair.of(Triple.of(NONE, pacman2targetDistance, 0), Pair.of(NONE, ghost2pacmanDistance));
+            System.out.println("HERE");
+            return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, 0), Pair.of(NONE, 0));
         }
         if (ghostVisited[ghostPosition.row][ghostPosition.col] == 2) {
-            return Pair.of(Triple.of(NONE, pacman2targetDistance, pacman2ghostDistance), Pair.of(NONE, 0));
+            return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, 0), Pair.of(NONE, 0));
         }
 
+        if (depth == miniMaxDepth) {
+            int pacman2targetDistance = distance(pacmanPosition, ghostPosition);
+            int pacman2ghostDistance = distance(pacmanPosition, configuration.getPosition(pacmanTarget));
+            int ghost2pacmanDistance = distance(pacmanPosition, ghostPosition);
+            return Pair.of(Triple.of(NONE, pacman2targetDistance, pacman2ghostDistance), Pair.of(NONE, ghost2pacmanDistance));
+        }
 
         if (pacmanStep) {
             pacmanVisited[pacmanPosition.row][pacmanPosition.col] = 1;
@@ -131,16 +131,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
                         pacmanVisited, ghostVisited,
                         pacmanNext, ghostPosition,
                         !pacmanStep, depth + 1);
-                if (p.getLeft().getRight() < miniMaxDepth) { // ghost is to close
-                    if (p.getLeft().getRight() > result.getLeft().getRight()
-                            || result.getLeft().getLeft().equals(NONE)) { // need to go anyway
-                        result.getLeft().setLeft(pacmanPosition.directionTo(pacmanNext));
-                        result.getLeft().setMiddle(p.getLeft().getMiddle());
-                        result.getLeft().setRight(p.getLeft().getRight());
-                        result.getRight().setLeft(p.getRight().getLeft());
-                        result.getRight().setRight(p.getRight().getRight());
-                    }
-                } else {
+                if (p.getLeft().getRight() > 0) {                                 // ghost is to close
                     if (p.getLeft().getMiddle() < result.getLeft().getMiddle()) { // go only if closer
                         result.getLeft().setLeft(pacmanPosition.directionTo(pacmanNext));
                         result.getLeft().setMiddle(p.getLeft().getMiddle());
