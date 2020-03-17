@@ -17,7 +17,7 @@ import static pacman.algorithm.Direction.NONE;
 
 public class MiniMaxShortestPath extends AbstractShortestPath {
     private static final long SEED = 19L;
-    private static final double RANDOM_STEP_PROBABILITY = 0.2;
+    private static final double RANDOM_STEP_PROBABILITY = 0.1;
 
     private PacMan pacman;
     private Ghost ghost;
@@ -66,7 +66,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
 
         if (randomStep()) {
             System.out.println("Ghost random step");
-            return getRandomDirection();
+            return getRandomDirection(configuration.getPosition(ghost));
         }
         return nextDirectionImp(false).getRight().getLeft();
     }
@@ -194,17 +194,11 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         return random.nextDouble() < RANDOM_STEP_PROBABILITY;
     }
 
-    private Direction getRandomDirection() {
-        int rnd = random.nextInt(4);
-        if (rnd == 0) {
-            return Direction.UP;
-        } else if (rnd == 1) {
-            return Direction.RIGHT;
-        } else if (rnd == 2) {
-            return Direction.DOWN;
-        } else {
-            return Direction.LEFT;
-        }
+    private Direction getRandomDirection(Position position) {
+        List<Position> steps = getSteps(position);
+        steps.removeIf(p -> !validPosition(p));
+        int rnd = random.nextInt(steps.size());
+        return position.directionTo(steps.get(rnd));
     }
 
     @Override

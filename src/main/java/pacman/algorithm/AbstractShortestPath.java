@@ -3,7 +3,7 @@ package pacman.algorithm;
 import pacman.game.GameConfiguration;
 import pacman.object.GameObject;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static pacman.algorithm.Direction.DOWN;
@@ -34,7 +34,12 @@ public abstract class AbstractShortestPath implements ShortestPath {
 
     protected List<Position> getSteps(Position pos) {
         int row = pos.row, col = pos.col;
-        return Arrays.asList(Position.of(row + 1, col), Position.of(row, col + 1), Position.of(row - 1, col), Position.of(row, col - 1));
+        List<Position> result = new ArrayList<>(4);
+        result.add(Position.of(row + 1, col));
+        result.add(Position.of(row, col + 1));
+        result.add(Position.of(row - 1, col));
+        result.add(Position.of(row, col - 1));
+        return result;
     }
 
     @Override
