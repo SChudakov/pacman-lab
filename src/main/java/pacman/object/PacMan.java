@@ -31,12 +31,12 @@ public class PacMan extends GameObject {
     }
 
 
-    public PacMan(int row, int column, GameConfiguration configuration) {
+    public PacMan(int row, int column, GameConfiguration configuration, int speed) {
         super(configuration.getTileX(column), configuration.getTileY(row), configuration.getTileWidth(), configuration.getTileHeight(), "Pacman");
 
         this.pacman = new AnimatedImage(IMAGE_PATH, 400, 4, 4, 0, 0, 36, 36);
         this.currentDirection = NONE;
-        this.speed = 100;
+        this.speed = speed;
     }
 
 

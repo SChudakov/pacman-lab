@@ -1,14 +1,12 @@
 package pacman.algorithm;
 
-import org.apache.commons.lang3.tuple.MutablePair;
-import org.apache.commons.lang3.tuple.MutableTriple;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 import pacman.game.GameConfiguration;
 import pacman.object.GameObject;
 import pacman.object.Ghost;
 import pacman.object.PacMan;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
@@ -28,6 +26,8 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
     private Random random;
     private int miniMaxDepth;
 
+    private static int cnt = 0;
+
     public GameObject getPacmanTarget() {
         return pacmanTarget;
     }
@@ -43,20 +43,22 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         this.ghost = Objects.requireNonNull(ghost, "ghost should not be null!");
         this.pacmanTargets = Objects.requireNonNull(pacmanTargets, "targets should not be null!");
         this.random = new Random(SEED);
-        this.miniMaxDepth = 6;
+        this.miniMaxDepth = 2;
     }
 
 
     public Direction getPacmanNextDirection() {
+        cnt++;
         pacmanTargets.removeIf(GameObject::isDead);
         if (pacman.isDead() || pacmanTargets.size() == 0) {
             return Direction.NONE;
         }
 
         if (pacmanTarget == null) {
-            pacmanTarget = getRandomPacmanTarget();
+            System.out.println("Set pacman target to a point: " + configuration.getPosition(pacmanTargets.get(0)));
+            pacmanTarget = pacmanTargets.get(0);
         }
-        return nextDirectionImp(true).getLeft().getLeft();
+        return nextDirectionImpl(true).getLeft();
     }
 
     public Direction getGhostNextDirection() {
@@ -68,118 +70,102 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
             System.out.println("Ghost random step");
             return getRandomDirection(configuration.getPosition(ghost));
         }
-        return nextDirectionImp(false).getRight().getLeft();
+        return nextDirectionImpl(false).getMiddle();
     }
 
-    // pacman : direction, dist to target, dist to ghost,
-    // ghost  : direction, dist to pacman
-    private Pair<Triple<Direction, Integer, Integer>, Pair<Direction, Integer>> nextDirectionImp(boolean pacmanStep) {
+    // pacman direction, ghost direction, distance
+    private Triple<Direction, Direction, Integer> nextDirectionImpl(boolean pacmanStep) {
         Position pacmanPosition = configuration.getPosition(pacman);
         Position ghostPosition = configuration.getPosition(ghost);
 
         // 0 = not visited, 1 = visited, 2 = target, 3 = avoid
         int[][] pacmanVisited = new int[configuration.getRowNum()][configuration.getColumnNum()];
-        pacmanVisited[configuration.getRow(pacmanTarget)][configuration.getColumn(pacmanTarget)] = 2;
-        pacmanVisited[configuration.getRow(ghost)][configuration.getColumn(ghost)] = 3;
-
         int[][] ghostVisited = new int[configuration.getRowNum()][configuration.getColumnNum()];
-        ghostVisited[configuration.getRow(pacman)][configuration.getColumn(pacman)] = 2;
 
-        return nextDirectionImp(pacmanVisited, ghostVisited,
+        return nextDirectionImpl(pacmanVisited, ghostVisited,
                 pacmanPosition, ghostPosition, pacmanStep, 0);
     }
 
-    private Pair<Triple<Direction, Integer, Integer>, Pair<Direction, Integer>> nextDirectionImp(
+    // pacman direction, ghost direction, distance
+    private Triple<Direction, Direction, Integer> nextDirectionImpl(
             int[][] pacmanVisited, int[][] ghostVisited,
             Position pacmanPosition, Position ghostPosition,
             boolean pacmanStep, int depth) {
         if (!validPosition(pacmanPosition) || pacmanVisited[pacmanPosition.row][pacmanPosition.col] == 1 ||
                 !validPosition(ghostPosition) || ghostVisited[ghostPosition.row][ghostPosition.col] == 1) {
-            return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, Integer.MIN_VALUE), Pair.of(NONE, Integer.MAX_VALUE));
-        }
-
-        if (pacmanVisited[pacmanPosition.row][pacmanPosition.col] == 2) {
-            return Pair.of(Triple.of(NONE, 0, Integer.MAX_VALUE), Pair.of(NONE, Integer.MAX_VALUE));
-        }
-        if (pacmanVisited[pacmanPosition.row][pacmanPosition.col] == 3) {
-            System.out.println("HERE");
-            return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, 0), Pair.of(NONE, 0));
-        }
-        if (ghostVisited[ghostPosition.row][ghostPosition.col] == 2) {
-            return Pair.of(Triple.of(NONE, Integer.MAX_VALUE, 0), Pair.of(NONE, 0));
+            return Triple.of(NONE, NONE, Integer.MIN_VALUE);
         }
 
         if (depth == miniMaxDepth) {
-            int pacman2targetDistance = distance(pacmanPosition, ghostPosition);
-            int pacman2ghostDistance = distance(pacmanPosition, configuration.getPosition(pacmanTarget));
-            int ghost2pacmanDistance = distance(pacmanPosition, ghostPosition);
-            return Pair.of(Triple.of(NONE, pacman2targetDistance, pacman2ghostDistance), Pair.of(NONE, ghost2pacmanDistance));
+            int pacman2ghostDistance = distance(pacmanPosition, ghostPosition);
+            return Triple.of(NONE, NONE, pacman2ghostDistance);
         }
 
         if (pacmanStep) {
             pacmanVisited[pacmanPosition.row][pacmanPosition.col] = 1;
 
-            MutablePair<MutableTriple<Direction, Integer, Integer>,
-                    MutablePair<Direction, Integer>> result = MutablePair.of(
-                    MutableTriple.of(NONE, Integer.MAX_VALUE, Integer.MIN_VALUE),
-                    MutablePair.of(NONE, Integer.MAX_VALUE)
-            );
+            List<Position> maxScorePositions = new ArrayList<>();
+            int maxScore = Integer.MIN_VALUE;
 
             List<Position> steps = getSteps(pacmanPosition);
             for (Position pacmanNext : steps) {
-                Pair<Triple<Direction, Integer, Integer>, Pair<Direction, Integer>> p = nextDirectionImp(
+                Triple<Direction, Direction, Integer> p = nextDirectionImpl(
                         pacmanVisited, ghostVisited,
                         pacmanNext, ghostPosition,
                         !pacmanStep, depth + 1);
-                if (p.getLeft().getRight() > 0) {                                 // ghost is to close
-                    if (p.getLeft().getMiddle() < result.getLeft().getMiddle()) { // go only if closer
-                        result.getLeft().setLeft(pacmanPosition.directionTo(pacmanNext));
-                        result.getLeft().setMiddle(p.getLeft().getMiddle());
-                        result.getLeft().setRight(p.getLeft().getRight());
-                        result.getRight().setLeft(p.getRight().getLeft());
-                        result.getRight().setRight(p.getRight().getRight());
-                    }
+                if (p.getRight().equals(Integer.MIN_VALUE)) {
+                    continue;
+                }
+                if (p.getRight() > maxScore) {
+                    maxScore = p.getRight();
+                    maxScorePositions.clear();
+                    maxScorePositions.add(pacmanNext);
+                } else if (p.getRight() == maxScore) {
+                    maxScorePositions.add(pacmanNext);
+                }
+            }
+
+            int minDistanceToTarget = Integer.MAX_VALUE;
+            Position resultPosition = null;
+            for (Position position : maxScorePositions) {
+                int currentDistance = distance(position, configuration.getPosition(pacmanTarget));
+                if (currentDistance < minDistanceToTarget) {
+                    minDistanceToTarget = currentDistance;
+                    resultPosition = position;
                 }
             }
 
             pacmanVisited[pacmanPosition.row][pacmanPosition.col] = 0;
-            return Pair.of(result.getLeft(), result.getRight());
+            return Triple.of(pacmanPosition.directionTo(resultPosition), NONE, maxScore);
         } else {
             ghostVisited[ghostPosition.row][ghostPosition.col] = 1;
 
-            MutablePair<MutableTriple<Direction, Integer, Integer>,
-                    MutablePair<Direction, Integer>> result = MutablePair.of(
-                    MutableTriple.of(NONE, Integer.MAX_VALUE, Integer.MIN_VALUE),
-                    MutablePair.of(NONE, Integer.MAX_VALUE));
+            Position minScorePosition = null;
+            int minScore = Integer.MAX_VALUE;
 
             List<Position> steps = getSteps(ghostPosition);
             for (Position ghostNext : steps) {
-                Pair<Triple<Direction, Integer, Integer>, Pair<Direction, Integer>> p = nextDirectionImp(
+                Triple<Direction, Direction, Integer> p = nextDirectionImpl(
                         pacmanVisited, ghostVisited,
                         pacmanPosition, ghostNext,
                         !pacmanStep, depth + 1);
-                if (p.getRight().getRight() < result.getRight().getRight()) {
-                    result.getLeft().setLeft(p.getLeft().getLeft());
-                    result.getLeft().setMiddle(p.getLeft().getMiddle());
-                    result.getLeft().setRight(p.getLeft().getRight());
-                    result.getRight().setLeft(ghostPosition.directionTo(ghostNext));
-                    result.getRight().setRight(p.getRight().getRight());
+                if (p.getRight().equals(Integer.MIN_VALUE)) {
+                    continue;
+                }
+                if (p.getRight() < minScore) {
+                    minScore = p.getRight();
+                    minScorePosition = ghostNext;
                 }
             }
 
             ghostVisited[ghostPosition.row][ghostPosition.col] = 0;
-            return Pair.of(result.getLeft(), result.getRight());
+            return Triple.of(NONE, ghostPosition.directionTo(minScorePosition), minScore);
         }
     }
 
     private int distance(Position p1, Position p2) {
         return Math.abs(p1.row - p2.row) + Math.abs(p1.col - p2.col);
     }
-
-    private GameObject getRandomPacmanTarget() {
-        return pacmanTargets.get(random.nextInt(pacmanTargets.size()));
-    }
-
 
     private boolean randomStep() {
         return random.nextDouble() < RANDOM_STEP_PROBABILITY;

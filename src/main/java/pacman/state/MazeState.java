@@ -27,8 +27,8 @@ public class MazeState extends State {
 
         List<GameObject> targets = buildMaze(manager, configuration);
 
-        PacMan pacMan = new PacMan(1, 1, configuration);
-        Ghost ghost = new Ghost(9, 18, configuration, 100);
+        PacMan pacMan = new PacMan(1, 1, configuration, 100);
+        Ghost ghost = new Ghost(9, 13, configuration, 100);
 
         MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(configuration, pacMan, ghost, targets);
         pacMan.setSearchAlgorithm(searchAlgorithm);
