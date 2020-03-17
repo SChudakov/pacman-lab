@@ -72,8 +72,9 @@ public class Ghost extends GameObject {
     @Override
     public void update(GameContainer gameContainer, double dt) {
         GameConfiguration configuration = gameContainer.getConfiguration();
+        Direction nextDirection = searchAlgorithm.getGhostNextDirection();
+        System.out.println("Ghost direction: " + nextDirection);
 
-        Direction nextDirection = searchAlgorithm.getGhostNextDirection(configuration);
         go(nextDirection, dt, configuration);
     }
 
@@ -84,7 +85,7 @@ public class Ghost extends GameObject {
 
     @Override
     public void collideWith(GameObject obj) {
-        if (obj instanceof PurplePoint) {
+        if (obj instanceof PacMan) {
             System.out.println("Ghost has eaten the pacman, game over");
             obj.makeDead();
         }

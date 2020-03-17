@@ -30,7 +30,7 @@ public class MazeState extends State {
         PacMan pacMan = new PacMan(1, 1, configuration);
         Ghost ghost = new Ghost(9, 18, configuration, 100);
 
-        MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(pacMan, ghost, targets);
+        MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(configuration, pacMan, ghost, targets);
         pacMan.setSearchAlgorithm(searchAlgorithm);
         ghost.setSearchAlgorithm(searchAlgorithm);
 

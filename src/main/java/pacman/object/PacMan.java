@@ -75,7 +75,8 @@ public class PacMan extends GameObject {
     @Override
     public void update(GameContainer gameContainer, double dt) {
         GameConfiguration configuration = gameContainer.getConfiguration();
-        Direction nextDirection = searchAlgorithm.getPacmanNextDirection(configuration);
+        Direction nextDirection = searchAlgorithm.getPacmanNextDirection();
+        System.out.println("Pacman direction: " + nextDirection);
 
         go(nextDirection, dt, configuration);
         pacman.nextFrame(dt);
@@ -100,7 +101,10 @@ public class PacMan extends GameObject {
     @Override
     public void collideWith(GameObject obj) {
         if (obj instanceof PurplePoint) {
-            System.out.println("PackMan has eaten a point, current sctore: " + ++score);
+            System.out.println("PackMan has eaten a point, current score: " + ++score);
+            if (obj.equals(searchAlgorithm.getPacmanTarget())) {
+                searchAlgorithm.setPacmanTarget(null);
+            }
             obj.makeDead();
         }
     }

@@ -1,6 +1,9 @@
 package pacman.algorithm;
 
-import static pacman.algorithm.Direction.*;
+import static pacman.algorithm.Direction.DOWN;
+import static pacman.algorithm.Direction.LEFT;
+import static pacman.algorithm.Direction.RIGHT;
+import static pacman.algorithm.Direction.UP;
 
 
 public class Position {
@@ -32,6 +35,8 @@ public class Position {
                 return UP;
             }
         } else {
+            System.out.println("this: " + this);
+            System.out.println("to: " + pos);
             error();
         }
         return null;
@@ -57,5 +62,13 @@ public class Position {
         int result = row;
         result = 31 * result + col;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "row=" + row +
+                ", col=" + col +
+                '}';
     }
 }
