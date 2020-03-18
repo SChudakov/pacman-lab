@@ -23,8 +23,9 @@ public class PacMan extends GameObject {
 
     private Direction currentDirection;
     private int speed;
-
     private int score;
+
+    static int cnt = 0;
 
     public void setSearchAlgorithm(MiniMaxShortestPath searchAlgorithm) {
         this.searchAlgorithm = searchAlgorithm;
@@ -74,11 +75,15 @@ public class PacMan extends GameObject {
 
     @Override
     public void update(GameContainer gameContainer, double dt) {
-        GameConfiguration configuration = gameContainer.getConfiguration();
-        Direction nextDirection = searchAlgorithm.getPacmanNextDirection();
-        System.out.println("Pacman direction: " + nextDirection);
+        ++cnt;
+        if(cnt == 5){
+            GameConfiguration configuration = gameContainer.getConfiguration();
+            Direction nextDirection = searchAlgorithm.getPacmanNextDirection();
+            System.out.println("Pacman direction: " + nextDirection);
 
-        go(nextDirection, dt, configuration);
+            go(nextDirection, dt, configuration);
+            cnt = 0;
+        }
         pacman.nextFrame(dt);
     }
 

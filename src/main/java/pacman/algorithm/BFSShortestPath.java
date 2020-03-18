@@ -10,10 +10,8 @@ import java.util.Queue;
 import static pacman.algorithm.Direction.NONE;
 
 public class BFSShortestPath extends AbstractShortestPath {
-    private static int count = 0;
-
-    public BFSShortestPath(GameConfiguration conf) {
-        super(conf);
+    public BFSShortestPath(GameConfiguration confifuration) {
+        super(confifuration);
     }
 
     @Override

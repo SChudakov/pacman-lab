@@ -2,6 +2,7 @@ package pacman.algorithm;
 
 import static pacman.algorithm.Direction.DOWN;
 import static pacman.algorithm.Direction.LEFT;
+import static pacman.algorithm.Direction.NONE;
 import static pacman.algorithm.Direction.RIGHT;
 import static pacman.algorithm.Direction.UP;
 
@@ -19,24 +20,41 @@ public class Position {
         return new Position(row, column);
     }
 
-    public Direction directionTo(Position pos) {
-        if (row == pos.row) {
-            if (col < pos.col) {
+    public Position withDirection(Direction direction) {
+        if (direction.equals(NONE)) {
+            return this;
+        } else if (direction.equals(LEFT)) {
+            return Position.of(row, col - 1);
+        } else if (direction.equals(UP)) {
+            return Position.of(row - 1, col);
+        } else if (direction.equals(RIGHT)) {
+            return Position.of(row, col + 1);
+        } else if (direction.equals(DOWN)) {
+            return Position.of(row + 1, col);
+        } else {
+            error();
+        }
+        return null;
+    }
+
+    public Direction directionTo(Position position) {
+        if (row == position.row) {
+            if (col < position.col) {
                 return RIGHT;
-            } else if (col > pos.col) {
+            } else if (col > position.col) {
                 return LEFT;
             } else {
                 error();
             }
-        } else if (col == pos.col) {
-            if (row < pos.row) {
+        } else if (col == position.col) {
+            if (row < position.row) {
                 return DOWN;
             } else {
                 return UP;
             }
         } else {
             System.out.println("this: " + this);
-            System.out.println("to: " + pos);
+            System.out.println("to: " + position);
             error();
         }
         return null;

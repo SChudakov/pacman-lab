@@ -7,7 +7,9 @@ import pacman.object.Ghost;
 import pacman.object.PacMan;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
@@ -26,7 +28,10 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
     private Random random;
     private int miniMaxDepth;
 
-    private static int cnt = 0;
+    private int numOfGhostPositions = 5;
+    private List<Position> ghostPositions;
+    private Map<Position, Integer> positionToIndex;
+
 
     public GameObject getPacmanTarget() {
         return pacmanTarget;
@@ -44,11 +49,15 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         this.pacmanTargets = Objects.requireNonNull(pacmanTargets, "targets should not be null!");
         this.random = new Random(SEED);
         this.miniMaxDepth = 2;
+
+        this.ghostPositions = new ArrayList<>(numOfGhostPositions);
+        this.positionToIndex = new HashMap<>(numOfGhostPositions);
+
+        this.pacmanTarget = pacmanTargets.get(0);
     }
 
 
     public Direction getPacmanNextDirection() {
-        cnt++;
         pacmanTargets.removeIf(GameObject::isDead);
         if (pacman.isDead() || pacmanTargets.size() == 0) {
             return Direction.NONE;
@@ -58,7 +67,8 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
             System.out.println("Set pacman target to a point: " + configuration.getPosition(pacmanTargets.get(0)));
             pacmanTarget = pacmanTargets.get(0);
         }
-        return nextDirectionImpl(true).getLeft();
+        return nextDirectionImpl(configuration.getPosition(pacman),
+                configuration.getPosition(ghost), true).getLeft();
     }
 
     public Direction getGhostNextDirection() {
@@ -66,18 +76,39 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
             return Direction.NONE;
         }
 
-        if (randomStep()) {
-            System.out.println("Ghost random step");
-            return getRandomDirection(configuration.getPosition(ghost));
+        Position pacmanPosition = configuration.getPosition(pacman);
+        Position ghostPosition = configuration.getPosition(ghost);
+        if (ghostPositions.isEmpty() || positionToIndex.get(ghostPosition) == ghostPositions.size() - 1) {
+            ghostPositions.clear();
+            positionToIndex.clear();
+
+            ghostPositions.add(ghostPosition);
+            if (randomStep()) {
+                for (int i = 0; i < numOfGhostPositions - 1; ++i) {
+                    Position lastPosition = ghostPositions.get(ghostPositions.size() - 1);
+                    ghostPositions.add(lastPosition.withDirection(getRandomDirection(lastPosition)));
+                }
+            } else {
+                for (int i = 0; i < numOfGhostPositions - 1; ++i) {
+                    Position lastPosition = ghostPositions.get(ghostPositions.size() - 1);
+                    Direction direction = nextDirectionImpl(pacmanPosition, lastPosition, false).getMiddle();
+                    ghostPositions.add(lastPosition.withDirection(direction));
+                }
+            }
+            System.out.println("Selected positions: " + ghostPositions);
+            for (int i = 0; i < ghostPositions.size(); ++i) {
+                positionToIndex.put(ghostPositions.get(i), i);
+            }
         }
-        return nextDirectionImpl(false).getMiddle();
+
+        int index = positionToIndex.get(ghostPosition);
+        return ghostPositions.get(index).directionTo(ghostPositions.get(index + 1));
     }
 
     // pacman direction, ghost direction, distance
-    private Triple<Direction, Direction, Integer> nextDirectionImpl(boolean pacmanStep) {
-        Position pacmanPosition = configuration.getPosition(pacman);
-        Position ghostPosition = configuration.getPosition(ghost);
-
+    private Triple<Direction, Direction, Integer> nextDirectionImpl(Position pacmanPosition,
+                                                                    Position ghostPosition,
+                                                                    boolean pacmanStep) {
         // 0 = not visited, 1 = visited, 2 = target, 3 = avoid
         int[][] pacmanVisited = new int[configuration.getRowNum()][configuration.getColumnNum()];
         int[][] ghostVisited = new int[configuration.getRowNum()][configuration.getColumnNum()];

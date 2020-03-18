@@ -71,11 +71,11 @@ public class Ghost extends GameObject {
 
     @Override
     public void update(GameContainer gameContainer, double dt) {
-//        GameConfiguration configuration = gameContainer.getConfiguration();
-//        Direction nextDirection = searchAlgorithm.getGhostNextDirection();
-//        System.out.println("Ghost direction: " + nextDirection);
-//
-//        go(nextDirection, dt, configuration);
+        GameConfiguration configuration = gameContainer.getConfiguration();
+        Direction nextDirection = searchAlgorithm.getGhostNextDirection();
+        System.out.println("Ghost direction: " + nextDirection);
+
+        go(nextDirection, dt, configuration);
     }
 
     @Override
