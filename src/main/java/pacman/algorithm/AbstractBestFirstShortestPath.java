@@ -27,6 +27,16 @@ public abstract class AbstractBestFirstShortestPath extends AbstractShortestPath
     public AbstractBestFirstShortestPath(GameConfiguration configuration, Heuristic heuristic) {
         super(configuration);
         this.heuristic = heuristic;
+        this.queue = new PriorityQueue<>(Comparator.comparingDouble(Pair::getKey));
+        this.openList = new HashSet<>();
+        this.closedList = new HashSet<>();
+        this.gScoreMap = new HashMap<>();
+    }
+
+    public int getDistance(Position position) {
+        double result = gScoreMap.get(position);
+        assert ((int) result) == result;
+        return (int) result;
     }
 
     @Override
@@ -34,11 +44,10 @@ public abstract class AbstractBestFirstShortestPath extends AbstractShortestPath
         if (targets.isEmpty()) {
             return Direction.NONE;
         }
-        invokeAlgorithm();
-        queue = new PriorityQueue<>(Comparator.comparingDouble(Pair::getKey));
-        openList = new HashSet<>();
-        closedList = new HashSet<>();
-        gScoreMap = new HashMap<>();
+        queue.clear();
+        openList.clear();
+        closedList.clear();
+        gScoreMap.clear();
 
         Direction[][] directions = new Direction[configuration.getRowNum()][configuration.getColumnNum()];
         Position startPosition = configuration.getPosition(object);

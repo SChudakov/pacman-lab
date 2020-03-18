@@ -26,7 +26,9 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
     private GameObject pacmanTarget;
 
     private Random random;
-    private int miniMaxDepth;
+    private int maximumDepth;
+
+    private Map<Position, Map<Position, Integer>> distanceMap;
 
     private int numOfGhostPositions = 5;
     private List<Position> ghostPositions;
@@ -42,18 +44,21 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
     }
 
 
-    public MiniMaxShortestPath(GameConfiguration configuration, PacMan pacman, Ghost ghost, List<GameObject> pacmanTargets) {
+    public MiniMaxShortestPath(GameConfiguration configuration, PacMan pacman, Ghost ghost,
+                               List<GameObject> pacmanTargets, Map<Position, Map<Position, Integer>> distanceMap) {
         super(configuration);
         this.pacman = Objects.requireNonNull(pacman, "pacMan should not be null!");
         this.ghost = Objects.requireNonNull(ghost, "ghost should not be null!");
         this.pacmanTargets = Objects.requireNonNull(pacmanTargets, "targets should not be null!");
         this.random = new Random(SEED);
-        this.miniMaxDepth = 2;
+        this.maximumDepth = 2;
+
+        this.pacmanTarget = pacmanTargets.get(0);
+
+        this.distanceMap = distanceMap;
 
         this.ghostPositions = new ArrayList<>(numOfGhostPositions);
         this.positionToIndex = new HashMap<>(numOfGhostPositions);
-
-        this.pacmanTarget = pacmanTargets.get(0);
     }
 
 
@@ -62,11 +67,8 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         if (pacman.isDead() || pacmanTargets.size() == 0) {
             return Direction.NONE;
         }
+        lazySetPacmanTarget();
 
-        if (pacmanTarget == null) {
-            System.out.println("Set pacman target to a point: " + configuration.getPosition(pacmanTargets.get(0)));
-            pacmanTarget = pacmanTargets.get(0);
-        }
         return nextDirectionImpl(configuration.getPosition(pacman),
                 configuration.getPosition(ghost), true).getLeft();
     }
@@ -75,6 +77,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         if (pacman.isDead() || pacmanTargets.size() == 0) {
             return Direction.NONE;
         }
+        lazySetPacmanTarget();
 
         Position pacmanPosition = configuration.getPosition(pacman);
         Position ghostPosition = configuration.getPosition(ghost);
@@ -105,6 +108,13 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
         return ghostPositions.get(index).directionTo(ghostPositions.get(index + 1));
     }
 
+    private void lazySetPacmanTarget() {
+        if (pacmanTarget == null) {
+            System.out.println("Set pacman target to point: " + configuration.getPosition(pacmanTargets.get(0)));
+            pacmanTarget = pacmanTargets.get(0);
+        }
+    }
+
     // pacman direction, ghost direction, distance
     private Triple<Direction, Direction, Integer> nextDirectionImpl(Position pacmanPosition,
                                                                     Position ghostPosition,
@@ -127,7 +137,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
             return Triple.of(NONE, NONE, Integer.MIN_VALUE);
         }
 
-        if (depth == miniMaxDepth) {
+        if (depth == maximumDepth) {
             int pacman2ghostDistance = distance(pacmanPosition, ghostPosition);
             return Triple.of(NONE, NONE, pacman2ghostDistance);
         }
@@ -195,7 +205,9 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
     }
 
     private int distance(Position p1, Position p2) {
-        return Math.abs(p1.row - p2.row) + Math.abs(p1.col - p2.col);
+        assert !configuration.isWall(p1.row, p1.col);
+        assert !configuration.isWall(p2.row, p2.col);
+        return distanceMap.get(p1).get(p2);
     }
 
     private boolean randomStep() {

@@ -1,6 +1,9 @@
 package pacman.state;
 
+import pacman.algorithm.AStartShortestPath;
+import pacman.algorithm.AbstractBestFirstShortestPath;
 import pacman.algorithm.MiniMaxShortestPath;
+import pacman.algorithm.Position;
 import pacman.game.GameConfiguration;
 import pacman.game.GameContainer;
 import pacman.game.State;
@@ -14,7 +17,10 @@ import pacman.object.PurplePoint;
 import pacman.object.Wall;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class MazeState extends State {
@@ -30,12 +36,45 @@ public class MazeState extends State {
         PacMan pacMan = new PacMan(1, 1, configuration, 100);
         Ghost ghost = new Ghost(9, 13, configuration, 100);
 
-        MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(configuration, pacMan, ghost, targets);
+        Map<Position, Map<Position, Integer>> distanceMap = getDistanceMap(configuration, targets);
+        MiniMaxShortestPath searchAlgorithm = new MiniMaxShortestPath(configuration, pacMan, ghost, targets, distanceMap);
         pacMan.setSearchAlgorithm(searchAlgorithm);
         ghost.setSearchAlgorithm(searchAlgorithm);
 
         manager.addObject(pacMan);
         manager.addObject(ghost);
+    }
+
+    private Map<Position, Map<Position, Integer>> getDistanceMap(GameConfiguration configuration, List<GameObject> targets) {
+        Map<Position, Map<Position, Integer>> result = new HashMap<>(targets.size());
+
+        AStartShortestPath shortestPath = new AStartShortestPath(configuration, AbstractBestFirstShortestPath.ZERO_HEURISTIC);
+        for (int i = 0; i < targets.size(); ++i) {
+            for (int j = i; j < targets.size(); ++j) {
+                GameObject source = targets.get(i);
+                GameObject target = targets.get(j);
+                Position sourcePosition = configuration.getPosition(source);
+                Position targetPosition = configuration.getPosition(target);
+                shortestPath.getNextDirection(configuration, source, Collections.singletonList(target));
+                int distance = shortestPath.getDistance(targetPosition);
+
+                result.compute(sourcePosition, (key, value) -> {
+                    if (value == null) {
+                        return new HashMap<>(targets.size());
+                    }
+                    return value;
+                });
+                result.compute(targetPosition, (key, value) -> {
+                    if (value == null) {
+                        return new HashMap<>(targets.size());
+                    }
+                    return value;
+                });
+                result.get(sourcePosition).put(targetPosition, distance);
+                result.get(targetPosition).put(sourcePosition, distance);
+            }
+        }
+        return result;
     }
 
 
@@ -45,7 +84,7 @@ public class MazeState extends State {
             for (int j = 0; j < configuration.getColumnNum(); j++) {
                 if (configuration.isWall(i, j)) {
                     manager.addObject(new Wall(i, j, configuration, WALL_TAG));
-                } else if (i != 1 || j != 1) {
+                } else {
                     PurplePoint point = new PurplePoint(i, j, configuration, String.format(POINT_TAG, j, i));
                     manager.addObject(point);
                     result.add(point);
