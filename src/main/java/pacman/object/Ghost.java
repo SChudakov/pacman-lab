@@ -73,7 +73,7 @@ public class Ghost extends GameObject {
     public void update(GameContainer gameContainer, double dt) {
         GameConfiguration configuration = gameContainer.getConfiguration();
         Direction nextDirection = searchAlgorithm.getGhostNextDirection();
-        System.out.println("Ghost direction: " + nextDirection);
+//        System.out.println("Ghost direction: " + nextDirection);
 
         go(nextDirection, dt, configuration);
     }

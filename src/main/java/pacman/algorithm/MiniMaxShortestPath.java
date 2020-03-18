@@ -25,7 +25,7 @@ import static pacman.algorithm.Direction.UP;
 
 public class MiniMaxShortestPath extends AbstractShortestPath {
     private static final long SEED = 17L;
-    private static final double RANDOM_STEP_PROBABILITY = 0.5;
+    private static final double RANDOM_STEP_PROBABILITY = 0.2;
 
     private PacMan pacman;
     private Ghost ghost;
@@ -38,7 +38,7 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
 
     private Map<Position, Map<Position, Integer>> distanceMap;
 
-    private int numOfGhostPositions = 2;
+    private int numOfGhostPositions = 5;
     private List<Position> ghostPositions;
     private Map<Position, Integer> positionToIndex;
 
@@ -110,20 +110,23 @@ public class MiniMaxShortestPath extends AbstractShortestPath {
                 System.out.println("Ghost random step");
                 for (int i = 0; i < numOfGhostPositions - 1; ++i) {
                     Position lastPosition = ghostPositions.get(ghostPositions.size() - 1);
-                    ghostPositions.add(lastPosition.withDirection(getRandomDirection(lastPosition)));
+                    Position randomNextPositions = lastPosition.withDirection(getRandomDirection(lastPosition));
+                    while (ghostPositions.contains(randomNextPositions)) {
+                        randomNextPositions = lastPosition.withDirection(getRandomDirection(lastPosition));
+                    }
+                    ghostPositions.add(randomNextPositions);
                 }
             } else {
                 for (int i = 0; i < numOfGhostPositions - 1; ++i) {
                     Position lastPosition = ghostPositions.get(ghostPositions.size() - 1);
                     Direction direction = nextDirectionImpl(pacmanPosition, lastPosition, false).getMiddle();
                     Position nextPosition = lastPosition.withDirection(direction);
-                    if (ghostPositions.get(ghostPositions.size() - 1).equals(nextPosition)) {
-                        Direction randomDirection = getRandomDirection(lastPosition);
-                        Position randomNextPosition = lastPosition.withDirection(randomDirection);
-                        ghostPositions.add(randomNextPosition);
-                    } else {
-                        ghostPositions.add(nextPosition);
+
+                    while (ghostPositions.contains(nextPosition)) {
+                        nextPosition = lastPosition.withDirection(getRandomDirection(lastPosition));
                     }
+
+                    ghostPositions.add(nextPosition);
                 }
             }
             System.out.println("Selected positions: " + ghostPositions);

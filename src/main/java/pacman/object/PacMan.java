@@ -76,7 +76,7 @@ public class PacMan extends GameObject {
     public void update(GameContainer gameContainer, double dt) {
         GameConfiguration configuration = gameContainer.getConfiguration();
         Direction nextDirection = searchAlgorithm.getPacmanNextDirection();
-        System.out.println("Pacman direction: " + nextDirection);
+//        System.out.println("Pacman direction: " + nextDirection);
 
         go(nextDirection, dt, configuration);
         pacman.nextFrame(dt);
