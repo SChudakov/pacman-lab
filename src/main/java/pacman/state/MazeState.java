@@ -33,7 +33,7 @@ public class MazeState extends State {
 
         List<GameObject> targets = buildMaze(manager, configuration);
 
-        PacMan pacMan = new PacMan(1, 1, configuration, 200);
+        PacMan pacMan = new PacMan(1, 1, configuration, 100);
         Ghost ghost = new Ghost(8, 18, configuration, 100);
 
         Map<Position, Map<Position, Integer>> distanceMap = getDistanceMap(configuration, targets);
